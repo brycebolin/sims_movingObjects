@@ -89,8 +89,6 @@ class Orbits(object):
 
         # Discover which type of orbital parameters we have on disk.
         format = None
-        print 'orbits is ',type(orbits)
-        print orbits.keys()
         if 'FORMAT' in orbits:
             format = orbits['FORMAT'].iloc[0]
             del orbits['FORMAT']
