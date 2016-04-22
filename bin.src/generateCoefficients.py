@@ -7,8 +7,10 @@ import warnings
 import numpy as np
 from lsst.sims.movingObjects import Orbits
 from lsst.sims.movingObjects import ChebyFits
+import lsst.sims.movingObjects.ephemerides as eph
 
 if __name__ == '__main__':
+
     parser = argparse.ArgumentParser(description="Generate Chebyshev polynomial coefficients" +
                                      " for a set of orbits, over a given timespan.")
     parser.add_argument("--orbitFile", type=str, default=None,
@@ -142,3 +144,7 @@ if __name__ == '__main__':
             # Write out coefficients.
             cheb.write(coeffFile, residFile, failedFile, append=append)
             append = True
+    print('printing cheb degen')
+    for tt, nn in zip(eph._calculated_times, eph._n_calculated_times):
+        print('%e %d' % (tt,nn))
+    print('max degen %d' % np.max(eph._n_calculated_times))

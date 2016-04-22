@@ -353,6 +353,7 @@ class ChebyFits(object):
         # For some objects, we will end up recalculating the ephemeride values, but most should be fine.
         times = self.getAllTimes()
         ephs = self.generateEphemerides(times)
+        print('generated eph for %e' % times[-1])
         # Loop through each object to generate coefficients.
         for orbitObj, e in zip(self.orbitsObj, ephs):
             tSegmentStart = self.tStart

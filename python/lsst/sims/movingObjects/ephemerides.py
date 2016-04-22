@@ -11,6 +11,8 @@ import time
 
 __all__ = ['PyOrbEphemerides']
 
+_calculated_times = None
+_n_calculated_times = None
 
 def dtime(time_prev):
     return (time.time() - time_prev, time.time())
@@ -261,7 +263,29 @@ class PyOrbEphemerides(object):
         numpy.ndarray
             The ephemeris values, organized as chosen by the user.
         """
+
+        global _calculated_times
+        global _n_calculated_times
+
         t = time.time()
+        if _calculated_times is None:
+            _calculated_times = np.array(times)
+            _n_calculated_times = np.ones(len(times))
+        else:
+            t_buff = []
+            n_buff = []
+            for tt in times:
+                if np.min(np.abs(_calculated_times-tt))<1.0e-10:
+                    i_min = np.argmin(np.abs(_calculated_times-tt))
+                    _n_calculated_times[i_min]+=1
+                else:
+                    t_buff.append(tt)
+                    n_buff.append(1)
+            if len(t_buff)>0:
+                _calculated_times = np.append(_calculated_times, t_buff)
+                _n_calculated_times = np.append(_n_calculated_times, n_buff)
+
+
         ephTimes = self._convertTimes(times, timeScale=timeScale)
         oorbEphs = self._generateOorbEphs(ephTimes, obscode=obscode)
         ephs = self._convertOorbEphs(oorbEphs, byObject=byObject)
