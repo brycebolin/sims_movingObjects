@@ -1,8 +1,9 @@
 from __future__ import print_function, division
+from __future__ import absolute_import
 import os
 import warnings
 import numpy as np
-import chebyshevUtils as cheb
+from . import chebyshevUtils as cheb
 from .orbits import Orbits
 from .ephemerides import PyOrbEphemerides
 

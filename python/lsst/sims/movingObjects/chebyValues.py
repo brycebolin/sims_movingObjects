@@ -1,7 +1,8 @@
+from __future__ import absolute_import
 import os
 import numpy as np
 import pandas as pd
-import chebyshevUtils as cheb
+from . import chebyshevUtils as cheb
 
 __all__ = ['ChebyValues']
 
