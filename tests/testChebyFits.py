@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import zip
 import unittest
 import os
 import warnings
@@ -93,7 +94,7 @@ class TestChebyFits(unittest.TestCase):
         # We expect calculated coefficients to have the following keys:
         coeffKeys = ['objId', 'tStart', 'tEnd', 'ra', 'dec', 'delta', 'vmag', 'elongation']
         for k in coeffKeys:
-            self.assertTrue(k in self.cheb.coeffs.keys())
+            self.assertTrue(k in list(self.cheb.coeffs.keys()))
         # And in this case, we had a 30 day timespan with 1 day segments
         # (one day segments should be more than enough to meet 2.5mas tolerance, so not subdivided)
         self.assertEqual(len(self.cheb.coeffs['tStart']), 30*len(self.orbits))

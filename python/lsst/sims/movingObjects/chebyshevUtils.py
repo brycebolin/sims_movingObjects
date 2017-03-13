@@ -3,6 +3,7 @@
 Implementation of Newhall, X. X. 1989, Celestial Mechanics, 45, p. 305-310
 """
 
+from builtins import range
 import numpy as np
 
 __all__ = ['chebeval', 'chebfit']

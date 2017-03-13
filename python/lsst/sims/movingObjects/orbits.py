@@ -1,3 +1,4 @@
+from builtins import object
 from itertools import repeat
 import warnings
 import numpy as np
@@ -193,7 +194,7 @@ class Orbits(object):
         altNames['sed_filename'] = ['sed_filename', 'sed']
 
         # Update column names that match any of the alternatives above.
-        for name, alternatives in altNames.iteritems():
+        for name, alternatives in altNames.items():
             intersection = list(set(alternatives) & set(ssoCols))
             if len(intersection) > 1:
                 raise ValueError('Received too many possible matches to %s in orbit file %s'

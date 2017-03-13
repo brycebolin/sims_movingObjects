@@ -1,5 +1,9 @@
 from __future__ import print_function, division
 from __future__ import absolute_import
+from builtins import zip
+from builtins import str
+from builtins import range
+from builtins import object
 import os
 import warnings
 import numpy as np
